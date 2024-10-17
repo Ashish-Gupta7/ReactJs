@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 const Nav = () => {
   return (
-    <div>
+    <div className=" flex items-center gap-6">
       <NavLink
         style={(e) => (e.isActive ? { textDecoration: "underline" } : {})}
         className={(e) => (e.isActive ? "text-emerald-500" : "")}
@@ -39,6 +39,13 @@ const Nav = () => {
         to="/items"
       >
         Items
+      </NavLink>
+      <NavLink
+        className={(e) => (e.isActive ? "text-emerald-500" : "")}
+        style={(e) => (e.isActive ? { textDecoration: "underline" } : {})}
+        to="/nesting"
+      >
+        Nesting
       </NavLink>
     </div>
   );

@@ -83,3 +83,14 @@ Handling non-existent routes by adding a catch-all route at the end:
 ```jsx
 <Route path="*" element={<NotFound />} />
 ```
+
+## 6. Nested Routes
+
+1. Creating nested route structures where child routes are rendered within a parent route.
+2. Use the Outlet component to render child routes.
+
+```jsx
+<Route path="/nesting" element={<NestList />}>
+  <Route path="/nesting/:nest" element={<Nesting />} />
+</Route>
+```
