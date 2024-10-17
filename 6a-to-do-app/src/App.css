@@ -1,0 +1,7 @@
+.tasks::-webkit-scrollbar {
+  width: 8px;
+  background: #09090b;
+}
+.tasks::-webkit-scrollbar-thumb {
+  background-color: rgb(228 228 231 / 0.5);
+}
