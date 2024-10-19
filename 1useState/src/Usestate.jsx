@@ -1,6 +1,13 @@
 import { useState } from "react";
 
 const Usestate = () => {
+  const val = useState("data");
+  console.log(val);
+  const actualValue = val[0];
+  const setValue = val[1];
+  console.log(actualValue);
+  console.log(setValue);
+
   const [a, seta] = useState(12);
   const counter = () => {
     seta(a + 1);
