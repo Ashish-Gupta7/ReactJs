@@ -28,3 +28,8 @@ Similarly, when a user submits data (e.g., form data), the frontend sends it to 
 
 When a user loads a page, the frontend makes a GET request via fetch or Axios to the backend, which retrieves the necessary data from the database.
 When a user submits a form (like creating a new record), the frontend sends a POST request to the backend, which then stores the data in the database.
+
+### Why we use utils for axios
+
+Agar hum har component ke liye axios lagane lage to components ko ek dusre ke data ke baare me pata nhi chalega, mtlb ye kah skte hai ki session create nhi hoga.
+Wahi agar hum alag se baseURL create krke uski madad se components me axios use kare to session create hone lagega aur data shareable rhega.
