@@ -211,7 +211,7 @@ export const store = configureStore({
 
 `chaahe 100 slice ho → sabka reducer store me dalna hai.`
 
-#### [Diagram]("./public/images/Diagram")
+![Diagram](./public/images/Diagram.png)
 
 ##### Flow samajh lo:
 
