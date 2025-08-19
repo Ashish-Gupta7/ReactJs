@@ -149,3 +149,74 @@ useSelector() hook → read only / not mutable
 4. Reducers state ko update kar dete hain (immutably).
 5. Store me new state save ho jata hai.
 6. React component automatically re-render ho jata hai (kyunki state change ho gayi).
+
+### Slice and Reducer Confusion
+
+#### 1. Slice
+
+1. Ek slice ek “feature” ya ek “part of state” ka pura package hota hai.
+2. Iske andar 3 cheezein hoti hain:
+   - name (slice ka naam)
+   - initialState (us slice ka starting state)
+   - reducers (jo functions state ko update karenge)
+
+```
+const counterSlice = createSlice({
+  name: "counter",
+  initialState: { value: 0 },
+  reducers: {
+    increment: (state) => { state.value += 1 },
+    decrement: (state) => { state.value -= 1 },
+  }
+})
+```
+
+Matlab slice = pura module (state + reducers + actions).
+
+#### 2. Reducer
+
+1. Reducer ek function hota hai jo state ko update karta hai.
+2. Jab tum ek slice banate ho → uska counterSlice.reducer automatically ban jata hai.
+3. Ye reducer tum store me doge.
+
+```
+export default counterSlice.reducer;
+```
+
+Aur fir store me use karte ho:
+
+```
+import counterReducer from "./reducers/CounterSlice";
+
+export const store = configureStore({
+  reducer: {
+    counter: counterReducer
+  }
+});
+```
+
+#### Confusion clear karte hain:
+
+- Slice = pura package (state + reducers + actions)
+- Reducer = slice ke andar se nikla hua function jo store me use hota hai
+- Matlab:
+  Slice tumhe store me directly nahi dena.
+  Tumhe uska reducer dena hota hai jo slice ke andar generate hota hai.
+
+#### Rule of Thumb (yaad rakhne ka simple tarika):
+
+- slice banate ho → counterSlice
+- store me dalte ho → counterSlice.reducer
+- actions nikalte ho → counterSlice.actions
+
+`chaahe 100 slice ho → sabka reducer store me dalna hai.`
+
+#### [Diagram]("./public/images/Diagram")
+
+##### Flow samajh lo:
+
+- counterSlice → tum slice banate ho (isme state + reducers + actions hote hain).
+- counterSlice.reducer → ye function slice se nikalta hai aur store me jata hai.
+- Store → store me tum reducers assign karte ho (counter: counterReducer).
+- counterSlice.actions → ye actions tum component me dispatch karte ho.
+- React Component → useDispatch se action bhejte ho, useSelector se state lete ho.
